@@ -1,6 +1,7 @@
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 from UnivariateLinearRegression import UnivariateLinearRegression
 
 
@@ -16,7 +17,7 @@ def mean_squared_error(test_y, predictions):
     return np.mean((test_y - predictions) ** 2)
 
 
-def plot_data_and_predictions(train_df, reg, test_df, mse):
+def plot_data_and_predictions(train_df, reg, mse):
     """Plot training data, predictions as a line, and display the mean squared error."""
     plt.scatter(train_df['x'], train_df['y'], s=2, label='Training data')
     x_line = np.linspace(np.min(train_df['x']), 100, 500)
@@ -30,7 +31,8 @@ def plot_data_and_predictions(train_df, reg, test_df, mse):
 
 
 def main():
-    train_df, test_df = load_data('linearregressiondata/train.csv', 'linearregressiondata/test.csv')
+    train_df, test_df = load_data('UnivariateLinearRegression/linearregressiondata/train.csv',
+                                  'UnivariateLinearRegression/linearregressiondata/test.csv')
     reg = UnivariateLinearRegression(0.00005)
     reg.train(train_df['x'], train_df['y'])
     predictions = reg.predict(test_df['x'])
@@ -38,7 +40,7 @@ def main():
     mse = mean_squared_error(test_df['y'], predictions)
     print('Mean squared error:', mse)
 
-    plot_data_and_predictions(train_df, reg, test_df, mse)
+    plot_data_and_predictions(train_df, reg, mse)
 
 
 if __name__ == "__main__":

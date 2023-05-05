@@ -7,9 +7,8 @@ class UnivariateLinearRegression:
         self.theta_0 = None
         self.theta_1 = None
 
-
     def train(self, X, y):
-        n_samples = X.shape[0]
+
         self.theta_1 = 0
         self.theta_0 = 0
 
